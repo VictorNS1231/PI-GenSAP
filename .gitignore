@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -22,3 +23,20 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+=======
+# Node
+node_modules/
+dist/
+
+# Python
+__pycache__/
+*.pyc
+.env
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+>>>>>>> 145bc6e2f121450b70ed534482f4cd94ef62f7eb
