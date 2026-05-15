@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
 function App() {
+  const [pergunta, setPergunta] = useState("");
+  const [resposta, setResposta] = useState("");
+
+  const enviar = async () => {
+    const res = await fetch("http://127.0.0.1:8000/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        pergunta: pergunta
+      })
+    });
+
+    const data = await res.json();
+    setResposta(JSON.stringify(data.resposta, null, 2));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ padding: 20 }}>
+      <h1>Chat IA</h1>
+
+      <input
+        value={pergunta}
+        onChange={(e) => setPergunta(e.target.value)}
+        placeholder="Digite sua pergunta"
+      />
+
+      <button onClick={enviar}>Enviar</button>
+
+      <pre>{resposta}</pre>
     </div>
   );
 }
