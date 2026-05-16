@@ -1,5 +1,4 @@
 .env
-*.env
+src/chave.env
 venv/
-node_modules/
 __pycache__/
